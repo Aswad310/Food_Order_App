@@ -110,16 +110,17 @@
                                     </td>
                                     <td><?php echo $featured; ?></td>
                                     <td><?php echo $active; ?></td>
+                                    <!-- Actions -->
                                     <td>
-                                        <a href="<?php echo SITEURL?>admin/update-category.php?id=<?php echo $id?>" class="btn-secondary">Update Category</a>
-                                        <a href="<?php echo SITEURL?>admin/delete-category.php?id=<?php echo $id?>&imagae_name=<?php echo $image_name?>" class="btn-danger">Delete Category</a>
+                                        <a href="<?php echo SITEURL; ?>admin/update-category.php?id=<?php echo $id?>" class="btn-secondary">Update Category</a>
+                                        <a href="<?php echo SITEURL; ?>admin/delete-category.php?id=<?php echo $id?>&imagae_name=<?php echo $image_name?>" class="btn-danger">Delete Category</a>
                                         
                                     </td>
                                 </tr>
                                 
                                 <?php
                             } 
-                        } else{
+                        } else{ 
                             // we do no have data in database
                                 ?> <!-- PHP breaks-->
                             
