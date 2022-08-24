@@ -1,6 +1,6 @@
 <?php 
 
-    // include constants,php file here
+    // include constants.php file here
     include('../config/constants.php');
 
     // check whether the id & image_name is set or not
