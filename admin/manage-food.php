@@ -20,6 +20,11 @@
                         echo $_SESSION['unauthorize'];
                         unset($_SESSION['unauthorize']);
                     }
+
+                    if(isset($_SESSION['category-not-found'])){
+                        echo $_SESSION['category-not-found'];
+                        unset($_SESSION['category-not-found']);
+                    }
                 ?>
                 <br/><br/>
                 
@@ -35,7 +40,6 @@
                         <th>Description</th>
                         <th>Price</th>
                         <th>Image</th>
-                        <th>Category</th>
                         <th>Featured</th>
                         <th>Active</th>
                         <th>Actions</th>
@@ -63,7 +67,6 @@
                                     $description = $rows['description'];
                                     $price = $rows['price'];
                                     $image_name = $rows['image_name'];
-                                    $category_id = $rows['category_id'];
                                     $featured = $rows['featured'];
                                     $active = $rows['active'];
 
@@ -74,7 +77,7 @@
                                         <td><?php echo $sn++; ?></td>
                                         <td><?php echo $title; ?></td>
                                         <td><?php echo $description; ?></td>
-                                        <td><?php echo $price; ?></td>
+                                        <td><?php echo "$".$price; ?></td>
                                         <td> 
                                             <?php
                                                 if($image_name != "")
@@ -92,13 +95,12 @@
                                                 }
                                             ?>
                                         </td>
-                                        <td><?php echo $category_id; ?></td>
                                         <td><?php echo $featured; ?></td>
                                         <td><?php echo $active; ?></td>
                                         <!-- Actions -->
                                         <td>
-                                            <a href="<?php echo SITEURL; ?>admin/update-food.php?id=<?php echo $id; ?>" class="btn-secondary">Update Admin</a>
-                                            <a href="<?php echo SITEURL; ?>admin/delete-food.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-danger">Delete Admin</a>
+                                            <a href="<?php echo SITEURL; ?>admin/update-food.php?id=<?php echo $id; ?>" class="btn-secondary">Update Food</a>
+                                            <a href="<?php echo SITEURL; ?>admin/delete-food.php?id=<?php echo $id; ?>&image_name=<?php echo $image_name; ?>" class="btn-danger">Delete Food</a>
                                             
                                         </td>
                                     </tr>

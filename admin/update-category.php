@@ -40,7 +40,9 @@
                         header('location:'.SITEURL.'admin/manage-category.php');
                     }
                 }
-            } else{
+            }
+            else
+            {
                 header('location:'.SITEURL.'admin/manage-category.php');
             }
         ?>
@@ -107,7 +109,8 @@
                             <input type="submit" name="submit" value="Update Category" class="btn-secondary">
                         </td>
                     </tr>
-                </table>    
+                </table>                       
+        </form>
     </div>
 </div>
 
@@ -205,3 +208,5 @@
     }
 
 ?>
+
+<?php include('partials/footer.php'); ?>
