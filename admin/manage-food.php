@@ -25,6 +25,22 @@
                         echo $_SESSION['category-not-found'];
                         unset($_SESSION['category-not-found']);
                     }
+
+                    if(isset($_SESSION['upload'])){
+                        echo $_SESSION['upload'];
+                        unset($_SESSION['upload']);
+                    }
+
+                    if(isset($_SESSION['failed-remove'])){
+                        echo $_SESSION['failed-remove'];
+                        unset($_SESSION['failed-remove']);
+                    }
+
+                    if(isset($_SESSION['update'])){
+                        echo $_SESSION['update'];
+                        unset($_SESSION['update']);
+                    }
+
                 ?>
                 <br/><br/>
                 
@@ -113,7 +129,7 @@
                                 ?> <!-- PHP Breaks 3 -->
                                 
                                 <tr>
-                                    <td colspan="6" class="failure text-center">No Category Added.</td>
+                                    <td colspan="8" class="failure text-center">No Category Added.</td>
                                 </tr>
                                 
                                 <?php // <!-- PHP Starts 3 -->

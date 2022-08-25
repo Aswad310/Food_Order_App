@@ -144,18 +144,24 @@
             </tr>
 
             <tr>
-                <td>Featured: </td>
+                <td>Featured:</td>
                 <td>
-                    <input <?php if($featured == 'Yes') echo 'checked'; ?> type="radio" name="featured" value="Yes"> Yes 
-                    <input <?php if($featured == 'No') echo 'checked'; ?>type="radio" name="featured" value="No"> No
+                    <input <?php if($featured == 'Yes'){echo "checked" ;} ?> type="radio" name="featured" id="featured_yes" value="Yes"> 
+                    <label for="featured_yes">Yes</label>
+
+                    <input <?php if($featured == 'No'){echo "checked" ;} ?> type="radio" name="featured" id="featured_no" value="No"> 
+                    <label for="featured_no">No</label>
                 </td>
             </tr>
 
             <tr>
-                <td>Active: </td>
+                <td>Active:</td>
                 <td>
-                    <input <?php if($active == 'Yes') echo 'checked'; ?> type="radio" name="active" value="Yes"> Yes 
-                    <input <?php if($active == 'No') echo 'checked'; ?>type="radio" name="active" value="No"> No
+                    <input <?php if($active == 'Yes'){echo "checked" ;} ?> type="radio" name="active" id="active_yes" value="Yes"> 
+                    <label for="active_yes">Yes</label>
+
+                    <input <?php if($active == 'No'){echo "checked" ;} ?> type="radio" name="active" id="active_no" value="No"> 
+                    <label for="active_no">No</label>
                 </td>
             </tr>
 
@@ -186,12 +192,102 @@
         $price = $_POST['price'];
         $current_image = $_POST['current_image'];
         $category = $_POST['category'];
-
         $featured = $_POST['featured'];
         $active = $_POST['active'];
 
         //2. Upload the image if selected
-        
+        if(isset($_FILES['image']['name']))
+        {
+            $image_name= $_FILES['image']['name'];
+
+            if($image_name!="")
+            {
+                // image available
+                
+                // Upload the new image
+                // Auto rename our image
+                // get the extension of our image (jpg, png, gif, etc) e.g. "specialfood.jpg"
+                $tmp = explode('.', $image_name);
+                $ext= end($tmp); // end is used to get value after the '.'
+
+                // Rename the image
+                $image_name = "Food-Name-".rand(0000,9999).".".$ext;
+
+                $source_path= $_FILES['image']['tmp_name'];
+
+                $destination_path= "../images/food/".$image_name;
+
+                // finally upload the image
+                $upload = move_uploaded_file($source_path, $destination_path);
+
+                // check whether the image is upload or not
+                // and if the image is not upload then we will stop the process and redirect with error message
+                if($upload==false)
+                {
+                    // set message 
+                    $_SESSION['upload']= "<div class='failure'>Failed to Update Food Image!</div>";
+                    // redirect to add category page
+                    header('location:'.SITEURL.'admin/manage-food.php');
+                    // stop the process 
+                    die();
+                }
+
+                // 3. remove the current image
+                if($current_image!="")
+                {
+                    $remove_path= "../images/food/".$current_image;
+                    $remove= unlink($remove_path);   // now $remove have boolean value yes or no 
+                
+                    // if failed to remove image then add an error message and end the process
+                    if($remove==false)
+                    {
+                        // set the session message
+                        $_SESSION['failed-remove']= "<div class='failure'>Failed to Remove Food Image</div>";
+                        // redirect to Manage category page 
+                        header('location:'.SITEURL.'admin/manage-food.php');
+                        // stop the process
+                        die();
+                    }
+                }
+            } 
+            else
+            {
+                $image_name= $current_image;
+            }
+        } 
+        else
+        {
+            $image_name= $current_image;
+        }
+
+        //4. Update the Food in Database
+        $sql3 = "UPDATE tbl_food SET 
+                title = '$title',
+                description = '$description',
+                price = $price,
+                image_name = '$image_name',
+                category_id = '$category',
+                featured = '$featured',
+                active = '$active'
+                WHERE id=$id
+                ";
+
+        //5. Execute the SQL Query
+        $res3 = mysqli_query($conn, $sql3);
+
+        //6. CHeck whether the query is executed or not 
+        if($res3==true)
+        {
+            //Query Exectued and Food Updated
+            $_SESSION['update'] = "<div class='success'>Food Updated Successfully.</div>";
+            header('location:'.SITEURL.'admin/manage-food.php');
+        }
+        else
+        {
+            //Failed to Update Food
+            $_SESSION['update'] = "<div class='error'>Failed to Update Food.</div>";
+            header('location:'.SITEURL.'admin/manage-food.php');
+        }
     }
 ?>
 
