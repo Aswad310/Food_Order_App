@@ -21,7 +21,7 @@
             <?php 
             
                 // 1. Query
-                $sql = "SELECT * FROM tbl_category";
+                $sql = "SELECT * FROM tbl_category WHERE featured = 'Yes' AND active = 'Yes' LIMIT 3";
                 // 2. execute query
                 $res = mysqli_query($conn, $sql) or die('error'.mysqli_error($conn));
                 // 3. check whether query execute or not
