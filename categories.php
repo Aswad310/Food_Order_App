@@ -13,8 +13,9 @@
                 // 3. check whether query executed or not
                 if($res == true)
                 {   
+                    // count rows in sql
                     $count = mysqli_num_rows($res);
-
+                    
                     if($count>0)
                     {
                         while($rows = mysqli_fetch_assoc($res))
@@ -22,14 +23,12 @@
                             $id = $rows['id'];
                             $title = $rows['title'];
                             $image_name = $rows['image_name'];
-
+                            
                             ?> <!-- PHP breaks -->
-
                             <a href="category-foods.html">
                                 <div class="box-3 float-container">
 
-                                <?php 
-                                
+                                <?php
                                     if($image_name == "")
                                     {
                                         echo "<div class='failure'>Image Not Available</div>";
@@ -37,17 +36,13 @@
                                     else
                                     {
                                         ?> <!-- PHP breaks2 -->
-                                        
                                         <img src="<?php echo SITEURL; ?>images/category/<?php echo $image_name; ?>" alt="Pizza" class="img-responsive img-curve">
-                                        
                                         <?php // <!-- PHP starts2 -->
                                     }
-                                
                                 ?>
                                     <h3 class="float-text text-white"><?php echo $title; ?></h3>
                                 </div>
                             </a>
-
                             <?php // <!-- PHP starts -->
                         }
                     }
