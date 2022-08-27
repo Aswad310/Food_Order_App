@@ -273,7 +273,7 @@
                 ";
 
         //5. Execute the SQL Query
-        $res3 = mysqli_query($conn, $sql3);
+        $res3 = mysqli_query($conn, $sql3) or die("error".mysqli_error($conn));
 
         //6. CHeck whether the query is executed or not 
         if($res3==true)

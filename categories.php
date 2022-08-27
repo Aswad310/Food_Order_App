@@ -25,7 +25,7 @@
                             $image_name = $rows['image_name'];
                             
                             ?> <!-- PHP breaks -->
-                            <a href="category-foods.html">
+                            <a href="<?php echo SITEURL?>category-foods.php?category_id=<?php echo $id?>">
                                 <div class="box-3 float-container">
 
                                 <?php
