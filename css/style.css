@@ -202,6 +202,17 @@ fieldset{
 
 
 
+.success{
+    color: #2ed573;
+    font-weight: bold;
+}
+.failure{
+    color: #ff4757;
+    font-weight: bold;
+}
+
+
+
 /* CSS for Mobile Size or Smaller Screen */
 
 @media only screen and (max-width:768px){

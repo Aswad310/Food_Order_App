@@ -17,6 +17,16 @@
         <div class="container">
             <h2 class="text-center">Food Menu</h2>
 
+            <?php
+
+                if(isset($_GET['category_id']))
+                {
+                    $category_id = $_GET['category_id'];
+                    
+                }
+
+            ?>
+
             <div class="food-menu-box">
                 <div class="food-menu-img">
                     <img src="images/menu-pizza.jpg" alt="Chicke Hawain Pizza" class="img-responsive img-curve">
