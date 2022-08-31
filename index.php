@@ -1,6 +1,6 @@
 <?php include("partials-front/menu.php"); ?>
 
-    <!-- fOOD sEARCH Section Starts Here -->
+    <!-- food search Section Starts Here -->
     <section class="food-search text-center">
         <div class="container">
             
@@ -11,7 +11,15 @@
 
         </div>
     </section>
-    <!-- fOOD sEARCH Section Ends Here -->
+    <!-- food search Section Ends Here -->
+    <br>
+    <?php 
+        if(isset($_SESSION['order']))
+        {
+            echo $_SESSION['order'];
+            unset($_SESSION['order']);
+        }
+    ?>
 
     <!-- CAtegories Section Starts Here -->
     <section class="categories">
@@ -48,9 +56,7 @@
                                         else
                                         {
                                             ?> <!-- PHP Breaks 2  -->
-
-                                            <img src="<?php echo SITEURL;?>images/category/<?php echo $image_name?>" alt="Pizza" class="img-responsive img-curve">
-                                            
+                                            <img src="<?php echo SITEURL;?>images/category/<?php echo $image_name?>" alt="Pizza" class="img-responsive img-curve">            
                                             <?php //<!-- PHP Starts 2  -->
                                         }
                                     ?>
@@ -152,7 +158,7 @@
         </div>
 
         <p class="text-center">
-            <a href="#">See All Foods</a>
+            <a href="<?php echo SITEURL;?>foods.php">See All Foods</a>
         </p>
     </section>
     <!-- fOOD Menu Section Ends Here -->
